@@ -1,5 +1,6 @@
-import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+import { AppBar, IconButton, Toolbar, Typography } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useLocation } from "react-router-dom";
 
 interface Props {
   drawerWidth: number;
@@ -7,6 +8,7 @@ interface Props {
 }
 
 const TopBar = (props: Props) => {
+  const location = useLocation();
   return (
     <AppBar
       position="fixed"
@@ -21,16 +23,16 @@ const TopBar = (props: Props) => {
           aria-label="open drawer"
           edge="start"
           onClick={props.handleDrawerToggle}
-          sx={{ mr: 2, display: { sm: 'none' } }}
+          sx={{ mr: 2, display: { sm: "none" } }}
         >
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap component="div">
-          V
+          {location.pathname === "/beer" ? "All Beers" : "Home"}
         </Typography>
       </Toolbar>
     </AppBar>
-    );
-  }
+  );
+};
 
 export default TopBar;

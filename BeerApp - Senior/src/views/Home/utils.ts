@@ -1,6 +1,6 @@
-import { getRandomBeerList } from '../../api';
-import { Beer } from '../../types';
-import handle from '../../utils/error';
+import { getBeerMetaData, getRandomBeerList } from "../../api";
+import { ApiParams, Beer, MetaData } from "../../types";
+import handle from "../../utils/error";
 
 const fetchData = (setData: (data: Array<Beer>) => void) => {
   (async () => {
@@ -13,4 +13,18 @@ const fetchData = (setData: (data: Array<Beer>) => void) => {
   })();
 };
 
-export { fetchData };
+const fetchMetaData = (
+  setData: (data: MetaData) => void,
+  params?: ApiParams,
+) => {
+  (async () => {
+    try {
+      const { data } = await getBeerMetaData(params);
+      setData(data);
+    } catch (error) {
+      handle(error);
+    }
+  })();
+};
+
+export { fetchData, fetchMetaData };

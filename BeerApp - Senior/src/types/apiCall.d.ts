@@ -1,4 +1,4 @@
-import { TYPE, SORT } from './';
+import { TYPE, SORT } from "./";
 
 interface ApiParams {
   per_page?: number; // Int between 1 and 200. Default is 50.
@@ -11,6 +11,13 @@ interface ApiParams {
   by_postal?: number | string; // 5-digit, or 9-digit with underscore
   by_country?: string;
   by_type?: TYPE;
+  total?: string;
 }
 
-export type { ApiParams };
+interface MetaData {
+  total: string;
+  page: string;
+  per_page: string;
+}
+
+export type { ApiParams, MetaData };
